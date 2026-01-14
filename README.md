@@ -5,6 +5,12 @@ El proyecto está orientado a una **arquitectura profesional**, con separación 
 
 [Live demo](https://test-pkm.vercel.app)
 
+
+<img width="400"  alt="Captura de pantalla 2026-01-14 103108" src="https://github.com/user-attachments/assets/1fae6ebf-56f0-4a2d-bd06-679b369602b3" />
+<img width="400" alt="Captura de pantalla 2026-01-14 103122" src="https://github.com/user-attachments/assets/637c5d74-ba5b-4ebe-83f8-1673d3392c09" />
+<img width="400" alt="Captura de pantalla 2026-01-14 103135" src="https://github.com/user-attachments/assets/b26295bc-9fdf-4356-ab40-4c02d5e71b80" />
+<img width="400"  alt="Captura de pantalla 2026-01-14 103201" src="https://github.com/user-attachments/assets/a5e53dea-3fd8-40dc-9bd3-e679688f3249" />
+
 ---
 
 ### 🚀 Instalación y ejecución
