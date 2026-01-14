@@ -1,3 +1,5 @@
+import { BASE_URL } from "./utils";
+
 export type PokemonDetailResponse = {
   id: number;
   name: string;
@@ -13,8 +15,6 @@ export type PokemonDetailResponse = {
     stat: { name: string; url: string };
   }>;
 };
-
-const BASE_URL = "https://pokeapi.co/api/v2";
 
 async function getJson<T>(url: string): Promise<T> {
   const res = await fetch(url);

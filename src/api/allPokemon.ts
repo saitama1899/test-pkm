@@ -1,4 +1,4 @@
-const BASE_URL = "https://pokeapi.co/api/v2";
+import { BASE_URL } from "./utils";
 
 type PokemonListResponse = {
   results: Array<{ name: string; url: string }>;

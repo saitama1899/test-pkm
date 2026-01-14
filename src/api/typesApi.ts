@@ -1,4 +1,4 @@
-const BASE_URL = "https://pokeapi.co/api/v2";
+import { BASE_URL } from "./utils";
 
 async function getJson<T>(url: string): Promise<T> {
   const res = await fetch(url);
