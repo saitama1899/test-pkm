@@ -3,7 +3,7 @@
 Aplicación Frontend en **React + TypeScript** que simula la creación de equipos Pokémon y combates entre ellos, siguiendo reglas específicas de enfrentamiento.  
 El proyecto está orientado a una **arquitectura profesional**, con separación clara de dominios, estado global con Zustand y pruebas unitarias con Jest + React Testing Library.
 
-[Live demo](test-pkm.vercel.app)
+[Live demo](https://test-pkm.vercel.app)
 
 ---
 
