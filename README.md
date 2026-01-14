@@ -1,16 +1,128 @@
-# React + Vite
+## 🧩 Pokédex Battle App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación Frontend en **React + TypeScript** que simula la creación de equipos Pokémon y combates entre ellos, siguiendo reglas específicas de enfrentamiento.  
+El proyecto está orientado a una **arquitectura profesional**, con separación clara de dominios, estado global con Zustand y pruebas unitarias con Jest + React Testing Library.
 
-Currently, two official plugins are available:
+[Live demo](test-pkm.vercel.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+### 🚀 Instalación y ejecución
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm i
+npm run dev
 
-## Expanding the ESLint configuration
+http://localhost:5173
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Tests
+
+```bash
+npm test
+```
+
+### 🧠 Arquitectura y decisiones técnicas
+
+#### 📦 Separación por dominios
+
+- domain/ contiene modelos puros sin dependencias de React.
+- stores/ centraliza toda la lógica de estado (Zustand).
+- features/ agrupa UI + lógica de cada caso de uso.
+
+#### 🔁 Estado global con Zustand
+
+useTeamsStore:
+
+- Draft del equipo
+- Guardado de equipos
+- Ordenación, shuffle, limpieza
+
+useBattleStore:
+
+- Selección cíclica de equipos
+- Simulación completa del combate
+- Logs secuenciales (tick por intervalo)
+
+Toda la lógica de combate vive fuera de los componentes, lo que facilita testing y mantenimiento.
+
+#### 🧪 Testing-first friendly
+
+- La simulación de combate está desacoplada del UI.
+- Los tests usan la misma lógica real del juego.
+- No hay mocks innecesarios de lógica crítica.
+
+#### 🎨 UI y experiencia
+
+- Layout tipo Pokédex minimalista
+- Scroll independiente por panel
+- Consola estilo terminal para feedback
+- Animación temporal de combate (1 acción / 2s)
+- Interacción drag & drop para ordenar equipos
+
+#### 🧠 Arquitectura
+
+#### 🧱 Dependencias
+
+Core
+- Node.js: 18.x
+- React: 18.x
+- TypeScript: 5.x
+- Vite: 5.x
+
+Estado y datos
+- Zustand: ^4.x
+- @tanstack/react-query: ^5.x
+
+Testing
+
+Jest: ^29.x
+- @testing-library/react: ^14.x
+- @testing-library/jest-dom: ^6.x
+
+Estilos
+- CSS Modules
+- Design tokens propios (variables CSS)
+
+Para los estilos lo he abordado de una manera similar a como estoy utilizando ahora mismo styled components.
+
+#### 🗂️ Estructura de carpetas
+
+```bash
+src/
+├── app/
+│   └── layouts/
+│       └── PokedexLayout.tsx        # Layout principal (gris + verde)
+│
+├── domain/
+│   └── pokemon/
+│       └── models.ts                # Modelos de dominio (Pokemon, Stats)
+│
+├── features/
+│   ├── home/
+│   │   ├── HomePage.tsx             # Pokédex + búsqueda + filtros
+│   │   ├── CreatePreviewPanel.tsx   # Panel verde (crear equipo)
+│   │   └── BattlePreviewPanel.tsx   # Panel verde (combate)
+│   │
+│   └── teams/
+│       └── TeamsPage.tsx            # Selección de equipos para combate
+│
+├── hooks/
+│   └── useDebouncedValue.ts         # Debounce para buscador
+│
+├── queries/
+│   ├── usePokemonList.ts            # Listado paginado (cacheado)
+│   ├── usePokemonSearch.ts          # Búsqueda + tipo
+│   └── usePokemonTypes.ts           # Tipos Pokémon
+│
+├── stores/
+│   ├── useTeamsStore.ts             # Draft + equipos guardados
+│   └── useBattleStore.ts            # Lógica completa del combate
+│
+├── test/
+│   ├── battle.logic.test.ts         # Test unitario de lógica
+│   └── ui.preview.test.tsx          # Test unitario de UI
+│
+└── main.tsx
+
+```
