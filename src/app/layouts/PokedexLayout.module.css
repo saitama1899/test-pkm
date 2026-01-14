@@ -1,0 +1,424 @@
+.screen {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 160px; /* middle + bottom */
+  gap: var(--space-3);
+  min-height: 0;
+}
+
+.listPanel {
+  background: var(--panel-gray);
+  border-radius: var(--radius-2);
+  padding: var(--space-2);
+  min-height: 0;
+  display: grid;
+  border-bottom: 40px solid var(--panel-gray-border);
+  border-top: 12px solid var(--panel-gray-border);
+  border-left: 12px solid var(--panel-gray-border);
+  border-right: 12px solid var(--panel-gray-border);
+}
+
+.search {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  border-radius: 999px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--ink-on-dark);
+}
+
+.search::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.listScroll {
+  min-height: 0;
+  overflow: hidden;
+  padding-right: 6px;
+
+  /* Firefox */
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+  scrollbar-width: thin;
+}
+
+/* Webkit (Chrome, Edge, Safari) */
+.listScroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.listScroll::-webkit-scrollbar-track {
+  background: transparent; /* o var(--panel-gray) */
+}
+
+.listScroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.listScroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+  background-clip: content-box;
+}
+
+.bottomRow {
+  display: flex;
+  gap: var(--space-7);
+  height: 160px;
+  min-height: 0;
+}
+
+.previewTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.previewHint {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 13px;
+}
+
+.bottomRow {
+  display: flex;
+  gap: var(--space-7);
+  height: 160px;
+}
+
+.previewPanel {
+  flex: 1;
+  background: var(--panel-green);
+  border-radius: var(--radius-2);
+  padding: var(--space-3);
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start; /* ✅ */
+  align-items: stretch; /* ✅ */
+  gap: 10px;
+
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+
+  /* tu scrollbar tal cual */
+  scrollbar-color: rgba(0, 0, 0, 0.35) transparent;
+  scrollbar-width: thin;
+}
+
+.previewPanel::-webkit-scrollbar {
+  width: 10px;
+}
+
+.previewPanel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.previewPanel::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.toast {
+  border: none;
+  background: rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.75);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.slotEmpty,
+.slotFilled {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* 1/6 cada uno, cuadrado */
+  border: none;
+  border-radius: 14px;
+  padding: 0;
+  cursor: default;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.slotFilled {
+  background: rgba(255, 255, 255, 0.35);
+  cursor: -webkit-grab;
+  cursor: grab;
+  overflow: hidden;
+}
+
+.slotImg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+  display: block;
+}
+
+.slotOverlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  background: rgba(0, 0, 0, 0.12);
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.slotIcon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.85);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.slotFilled:hover .slotOverlay {
+  opacity: 1;
+}
+
+.previewFooter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.smallBtn {
+  border: none;
+  border-radius: 10px;
+  padding: 6px 10px;
+  background: rgba(0, 0, 0, 0.16);
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.previewAction {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+  background: var(--panel-gray);
+  color: white;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.previewAction:active {
+  transform: translateY(1px);
+}
+
+.previewActionSpacer {
+  width: 120px;
+  height: 120px;
+}
+
+.actionsRow {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: flex-start;
+}
+
+.actionBtn {
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.16);
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.actionBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.slotFilled:active {
+  transform: scale(0.98);
+}
+
+.battleTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.battleSlot {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.battleImg {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+.battlePlaceholder {
+  width: 100%;
+  height: 100%;
+}
+
+.vs {
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.battleLog {
+  display: flex;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.12);
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.logText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.logPrompt {
+  font-weight: 900;
+}
+
+.battleSummary {
+  display: grid;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.roundWinners {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.roundList {
+  margin: 6px 0 0;
+  padding-left: 16px;
+}
+
+.resultBox {
+  display: grid;
+  gap: 10px;
+  border-radius: 14px;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+.resultHeader {
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.resultSummary {
+  display: grid;
+  gap: 6px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+}
+
+.resultRounds {
+  display: grid;
+  gap: 6px;
+}
+
+.resultSubTitle {
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.roundList {
+  margin: 0;
+  padding-left: 16px;
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.roundTeam {
+  opacity: 0.75;
+}
+
+.resultHint {
+  font-size: 12px;
+  opacity: 0.75;
+}
