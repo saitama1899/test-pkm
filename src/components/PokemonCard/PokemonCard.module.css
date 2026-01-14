@@ -1,0 +1,73 @@
+.card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 12px;
+  border-radius: var(--radius-1);
+  background: rgba(255, 255, 255, 0.08);
+
+  /* FIX */
+  min-height: 84px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+}
+
+.name {
+  margin: 0;
+  font-weight: 700;
+  text-transform: capitalize;
+  color: var(--ink-on-dark);
+}
+
+.muted {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.pill {
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.sprite {
+  width: 100px;
+  height: 100px;
+  flex: 0 0 auto;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.types {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 12px;
+  justify-content: center;
+}
+
+.error {
+  color: var(--error);
+}
